@@ -91,4 +91,7 @@ function snap() {
 	this.context.drawImage(video, 0, 0, w, h);
 
 	new_screenshot_index++;
+  $('.screenshots').animate({
+    scrollTop: $('.screenshots').get(0).scrollHeight
+  }, 2000);
 }
