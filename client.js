@@ -27,8 +27,8 @@ var controller = Leap.loop({}, function(frame){
     frame.gestures.forEach(function(gesture){
         switch (gesture.type){
           case "swipe":
-              console.log(gesture.direction);
-          	  if (!video.paused && Date.now() - lastDate > 1000) {
+              var isToScreen = gesture.direction[2] > 0.9 || gesture.direction[2] < -0.9;
+          	  if (!isToScreen && !video.paused && Date.now() - lastDate > 1000) {
                 lastDate = Date.now();
                 console.log("Screenshotted" + gesture.duration);
           	  	snap();
@@ -70,8 +70,6 @@ $(function(){
 		h = parseInt(w * ratio, 10);
 
     popcorn = Popcorn( "#video-active" );
- 
-    /*
     popcorn.footnote({
      start: 2,
      end: 5,
