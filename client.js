@@ -56,12 +56,23 @@ $(function(){
 	// Get handles on the video and canvas elements
 	video = document.querySelector('video');
 
+  var popcorn;
+
 	// Add a listener to wait for the 'loadedmetadata' state so the video's dimensions can be read
 	video.addEventListener('loadedmetadata', function() {
 		// Calculate the ratio of the video's width to height
 		ratio = video.videoHeight / video.videoWidth;
 		w = parseInt(video.videoWidth/4.0);
 		h = parseInt(w * ratio, 10);
+
+    popcorn = Popcorn( "#video-active" );
+ 
+    popcorn.footnote({
+     start: 2,
+     end: 5,
+     target: "footnote",
+     text: "Pop!"
+    });
 	}, false);
 
 	$('#leap_motion_short').click(function(){snap();});
@@ -77,25 +88,30 @@ function onTrackedVideoFrame(currentTime, duration){
 // Takes a snapshot of the video
 function snap() {
 	this.width = w;
-    this.height = h;
-    this.element = document.createElement('canvas');
-    $('.screenshots').append('<div class="screenshot screenshot_'+new_screenshot_index+'"></div>');
+  this.height = h;
+  this.element = document.createElement('canvas');
+  $('.screenshots').append('<div class="screenshot screenshot_'+new_screenshot_index+'"></div>');
 
-    $(this.element)
-       .attr('id', 'screenshot_'+new_screenshot_index)
-       .text('unsupported browser')
-       .width(this.width)
-       .height(this.height)
-       .appendTo('.screenshot_'+new_screenshot_index);
+  $(this.element)
+     .attr('id', 'screenshot_'+new_screenshot_index)
+     .text('unsupported browser')
+     .width(this.width)
+     .height(this.height)
+     .appendTo('.screenshot_'+new_screenshot_index);
 
-    var fake_data_html = '<b>Movie:</b> Ex Machina (@Gary)' +
-    					 '<br>' +
-    					 '<b>Snapshot taken:</b> ' + $('#current').text() + 's';
+  var fake_data_html = '<b>Movie:</b> Ex Machina (@Gary)' +
+  					 '<br>' +
+  					 '<b>Snapshot taken:</b> ' + $('#current').text() + 's';
 
-    $('.screenshot_'+new_screenshot_index).append('<div class="description"></div>');
-    $('.screenshot_'+new_screenshot_index+' .description').html(fake_data_html);
+  $('.screenshot_'+new_screenshot_index).append('<div class="description" value="'+$("#current").text()+'"></div>');
+  $('.screenshot_'+new_screenshot_index+' .description').html(fake_data_html);
+  $('.screenshot_'+new_screenshot_index).click(function(){
+    $('.screenshot').removeClass('selected');
+    $(this).addClass('selected');
+    video.currentTime = parseFloat($(this).find('.description').attr('value'));
+  });
 
-    this.context = this.element.getContext("2d");
+  this.context = this.element.getContext("2d");
 
 	//var canvas = $('#screenshot_'+new_screenshot_index);
 	//console.log(canvas);
