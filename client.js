@@ -30,7 +30,7 @@ $(function(){
 	$("#video-active").on(
  	   "timeupdate",
     	function(event){
-    		onTrackedVideoFrame(this.currentTime, this.duration);
+    		onTrackedVideoFrame(this.currentTime.toFixed(1), this.duration.toFixed(1));
     	}
     );
 
@@ -69,11 +69,9 @@ function snap() {
        .height(this.height)
        .appendTo('.screenshot_'+new_screenshot_index);
 
-    var fake_data_html = '<b>Movie:</b> Ex Machina' +
+    var fake_data_html = '<b>Movie:</b> Ex Machina (@Gary)' +
     					 '<br>' +
-    					 '<b>User:</b> Gary' +
-    					 '<br>' +
-    					 '<b>Time:</b> ' + $('#current').text();
+    					 '<b>Snapshot taken:</b> ' + $('#current').text() + 's';
 
     $('.screenshot_'+new_screenshot_index).append('<div class="description"></div>');
     $('.screenshot_'+new_screenshot_index+' .description').html(fake_data_html);
