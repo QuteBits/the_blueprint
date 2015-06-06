@@ -20,7 +20,7 @@ var controller = Leap.loop({}, function(frame){
       pinching = false;
       if (waspinching == true) {
         waspinching = false;
-        video. ();
+        video.requestFullscreen();
         console.log("Unpinch")
       }
     }
@@ -64,9 +64,6 @@ function setup_acc(title, content){
 }
 
 $(function(){
-	 $('.overlay').hide();
-//$('.overlay').text('<i class="fa fa-circle-o fa-spin"></i>');
- $('.overlay').text('O');
 	$("#video-active").on(
  	   "timeupdate",
     	function(event){
@@ -108,8 +105,6 @@ function onTrackedVideoFrame(currentTime, duration){
 
 // Takes a snapshot of the video
 function snap() {
-	$('.overlay').show(1000);
- $('.overlay').hide(1000);
 	this.width = w;
   this.height = h;
   this.element = document.createElement('canvas');
