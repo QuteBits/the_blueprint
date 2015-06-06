@@ -46,6 +46,10 @@ function setup_acc(title, content){
 }
 
 $(function(){
+  $('.overlay').hide();
+  //$('.overlay').text('<i class="fa fa-circle-o fa-spin"></i>');
+  $('.overlay').text('O');
+
 	$("#video-active").on(
  	   "timeupdate",
     	function(event){
@@ -67,12 +71,14 @@ $(function(){
 
     popcorn = Popcorn( "#video-active" );
  
+    /*
     popcorn.footnote({
      start: 2,
      end: 5,
      target: "footnote",
      text: "Pop!"
     });
+    */
 	}, false);
 
 	$('#leap_motion_short').click(function(){snap();});
@@ -87,6 +93,9 @@ function onTrackedVideoFrame(currentTime, duration){
 
 // Takes a snapshot of the video
 function snap() {
+  $('.overlay').show(1000);
+  $('.overlay').hide(1000);
+
 	this.width = w;
   this.height = h;
   this.element = document.createElement('canvas');

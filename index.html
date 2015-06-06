@@ -11,6 +11,7 @@
     <!-- CDN Libraries/Fonts -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- include Google's AJAX API loader -->
 	<script src="http://www.google.com/jsapi"></script>
 	<!-- load JQuery and UI from Google (need to use UI to animate colors) -->
@@ -25,10 +26,14 @@
 	<link type="text/css" rel="stylesheet" href="style.css" media="all">
 </head>
 <body>
-<div class="row">
-	<video id="video-active"
-    class="video-active"
-    controls="controls" width="100%" autoplay><source src="exmachina.mp4" type="video/mp4"></video>
+	<div class="row">
+		<video id="video-active"
+	    class="video-active"
+	    controls="controls" width="100%" autoplay><source src="exmachina.mp4" type="video/mp4"></video>
+	    <div class="overlay">
+
+	    </div>
+    </div>
 	<div class="row">
 		<div id="current">0:00</div>
 		<div id="duration">0:00</div>
@@ -44,7 +49,6 @@
 	<div class="screenshots">
 	<!-- screenshots go here -->
 	</div>
-</div>
 <div id="footer">
 	<script src="http://js.leapmotion.com/leap-0.6.3.js"></script>
 	<script src="http://js.leapmotion.com/leap-plugins-0.1.8.js"></script>
