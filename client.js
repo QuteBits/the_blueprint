@@ -1,11 +1,34 @@
 
 var lastDate = Date.now();
+
+// Define some vars required later
+var new_screenshot_index = 0;
+var w, h, ratio;
+var video;
+
 var controller = Leap.loop({}, function(frame){
   if(frame.valid && frame.gestures.length > 0){
     frame.gestures.forEach(function(gesture){
         switch (gesture.type){
+          case "screenTap":
+              if (Date.now() - lastDate > 1000) {
+                lastDate = Date.now();
+                if (video.paused) {
+                  video.play();
+                  console.log("Resumed");
+                } else {
+                  video.pause();
+                  console.log("Paused");
+                }
+              }
+              break;
+        }
+    });
+    frame.gestures.forEach(function(gesture){
+        switch (gesture.type){
           case "swipe":
-          	  if (Date.now() - lastDate > 1000) {
+              console.log(gesture.direction);
+          	  if (!video.paused && Date.now() - lastDate > 1000) {
                 lastDate = Date.now();
                 console.log("Screenshotted" + gesture.duration);
           	  	snap();
@@ -15,11 +38,6 @@ var controller = Leap.loop({}, function(frame){
     });
   }
 });
-
-// Define some vars required later
-var new_screenshot_index = 0;
-var w, h, ratio;
-var video;
 
 //accordion shit
 function setup_acc(title, content){
