@@ -1,0 +1,50 @@
+.row {
+  text-align: center;
+  font-weight: 150%;
+  font-family: Lucida Sans Unicode; 
+
+  width: 800px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+#current, #duration {
+  width: 50%;
+  float: left;
+}
+
+.clickme {
+  box-sizing: border-box;
+  float: left;
+  width: 30%;
+  padding: 20px;
+  background: none;
+  border: 2px solid #009;
+  color: #009;
+}
+
+.clickme:hover {
+  cursor: pointer;
+  background-color: #009;
+  border: 2px solid #009;
+  color: #FFF;
+}
+
+.row .clickme:nth-of-type(2),
+.row .clickme:nth-of-type(3) {
+  margin-left: 5%;
+}
+
+.screenshot {
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+
+  border-bottom: 1px solid #CCC;
+}
+
+.screenshot canvas {
+  float: left;
+}
