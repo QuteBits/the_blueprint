@@ -1,11 +1,28 @@
 
 var controller = Leap.loop({enableGestures: true}, function(frame){
   if(frame.valid && frame.gestures.length > 0){
+    console.log(frame);
     frame.gestures.forEach(function(gesture){
         switch (gesture.type){
           case "swipe":
-          	  if (gesture.state == "stop") {
-              	console.log("Screenshotted");
+              var isHorizontal = Math.abs(gesture.direction[0]) > Math.abs(gesture.direction[1]);
+              //Classify as right-left or up-down
+              if(isHorizontal){
+                  if(gesture.direction[0] > 0){
+                      swipeDirection = "right";
+                  } else {
+                      swipeDirection = "left";
+                  }
+              } else { //vertical
+                  if(gesture.direction[1] > 0){
+                      swipeDirection = "up";
+                  } else {
+                      swipeDirection = "down";
+                  }                  
+              }
+              console.log("Swipe " + swipeDirection);    
+          	  if (gesture.state === "stop" && swipeDirection === "right") {
+                console.log("Screenshotted" + gesture.duration);
           	  	snap();
           	  }
               console.log("Swipe Gesture" + gesture.state);
