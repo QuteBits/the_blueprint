@@ -5,8 +5,26 @@ var lastDate = Date.now();
 var new_screenshot_index = 0;
 var w, h, ratio;
 var video;
-
+var piching = false;
+var waspinching = false;
 var controller = Leap.loop({}, function(frame){
+  if (Date.now() - lastDate > 1000) {
+    if (frame.hands[0] && frame.hands[0].pinchStrength > 0.9) {
+      pinching = true;
+      if (waspinching == false) {
+        waspinching = true;
+        video.webkitRequestFullscreen();
+        console.log("Pinch");
+      }
+    } else {
+      pinching = false;
+      if (waspinching == true) {
+        waspinching = false;
+        video. ();
+        console.log("Unpinch")
+      }
+    }
+  }
   if(frame.valid && frame.gestures.length > 0){
     frame.gestures.forEach(function(gesture){
         switch (gesture.type){
@@ -46,10 +64,6 @@ function setup_acc(title, content){
 }
 
 $(function(){
-  $('.overlay').hide();
-  //$('.overlay').text('<i class="fa fa-circle-o fa-spin"></i>');
-  $('.overlay').text('O');
-
 	$("#video-active").on(
  	   "timeupdate",
     	function(event){
@@ -70,13 +84,13 @@ $(function(){
 		h = parseInt(w * ratio, 10);
 
     popcorn = Popcorn( "#video-active" );
+
     popcorn.footnote({
      start: 2,
      end: 5,
      target: "footnote",
      text: "Pop!"
     });
-    */
 	}, false);
 
 	$('#leap_motion_short').click(function(){snap();});
@@ -91,9 +105,6 @@ function onTrackedVideoFrame(currentTime, duration){
 
 // Takes a snapshot of the video
 function snap() {
-  $('.overlay').show(1000);
-  $('.overlay').hide(1000);
-
 	this.width = w;
   this.height = h;
   this.element = document.createElement('canvas');
