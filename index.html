@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html>		
 <head>
     <title>Laboratory</title>
     <meta charset="UTF-8" />
@@ -11,17 +11,7 @@
     <!-- CDN Libraries/Fonts -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!-- include Google's AJAX API loader -->
-	<script src="http://www.google.com/jsapi"></script>
-	<!-- load JQuery and UI from Google (need to use UI to animate colors) -->
-	<script type="text/javascript">
-	google.load("jqueryui", "1.5.2");
-	</script>
-
-	<!-- CDN popcorn to cut video/audio -->
-	<script src="http://popcornjs.org/code/dist/popcorn-complete.js"></script>
-
+	<link rel="stylesheet" href="css/font-awesome.min.css">
     <!-- CSS chunks -->
 	<link type="text/css" rel="stylesheet" href="style.css" media="all">
 </head>
@@ -31,22 +21,30 @@
 	    class="video-active"
 	    controls="controls" width="100%" autoplay><source src="exmachina.mp4" type="video/mp4"></video>
 	    <div class="overlay">
-
 	    </div>
     </div>
+
 	<div class="row">
 		<div id="current">0:00</div>
 		<div id="duration">0:00</div>
 	</div>
-	<div class="row">
-		<div id="footnote"></div>
-	</div>
+
+	<!--
 	<div class="row">
 		<div class="clickme" id="leap_motion_short">SHORT GESTURE</div>
 		<div class="clickme" id="leap_motion_average">AVERAGE GESTURE</div>
-		<div class="clickme" id="leap_motion_long">LONG GESTURE</div>
+		<div class="clickme" id="leap_motion_long">LONG GESTURE</div>	
 	</div>
-	<div class="screenshots">
+	-->
+	<!--
+	<div class="row">
+		<div class="clickme" id="fullscreen">FULLSCREEN</div>
+	</div>
+	-->
+	<div style="border-bottom: 3px solid #FFF;" class="row fingerprint">
+	</div>
+
+	<div class="row screenshots">
 	<!-- screenshots go here -->
 	</div>
 <div id="footer">
