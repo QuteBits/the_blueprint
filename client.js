@@ -115,9 +115,44 @@ function setup_acc(title, content){
 	$(title).click();
 }
 
+function errorHandler(e) {
+  var msg = '';
+
+  switch (e.code) {
+    case FileError.QUOTA_EXCEEDED_ERR:
+      msg = 'QUOTA_EXCEEDED_ERR';
+      break;
+    case FileError.NOT_FOUND_ERR:
+      msg = 'NOT_FOUND_ERR';
+      break;
+    case FileError.SECURITY_ERR:
+      msg = 'SECURITY_ERR';
+      break;
+    case FileError.INVALID_MODIFICATION_ERR:
+      msg = 'INVALID_MODIFICATION_ERR';
+      break;
+    case FileError.INVALID_STATE_ERR:
+      msg = 'INVALID_STATE_ERR';
+      break;
+    default:
+      msg = 'Unknown Error';
+      break;
+  };
+
+  console.log('Error: ' + msg);
+}
+
 $(function(){
+  // Note: The file system has been prefixed as of Google Chrome 12:
+  /*
+  window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+  window.requestFileSystem(window.PERSISTENT, 100*1024*1024, function onInitFs(fs) {
+    console.log('Opened file system: ' + fs.name);
+  }, errorHandler(e));
+  */
+  
   //during playback just update the time
-	$("#video-active").on(
+	$(".video-stream").on(
  	   "timeupdate",
     	function(event){
         //update timers
