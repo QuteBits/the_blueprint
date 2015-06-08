@@ -115,34 +115,24 @@ function setup_acc(title, content){
 	$(title).click();
 }
 
-function errorHandler(e) {
-  var msg = '';
-
-  switch (e.code) {
-    case FileError.QUOTA_EXCEEDED_ERR:
-      msg = 'QUOTA_EXCEEDED_ERR';
-      break;
-    case FileError.NOT_FOUND_ERR:
-      msg = 'NOT_FOUND_ERR';
-      break;
-    case FileError.SECURITY_ERR:
-      msg = 'SECURITY_ERR';
-      break;
-    case FileError.INVALID_MODIFICATION_ERR:
-      msg = 'INVALID_MODIFICATION_ERR';
-      break;
-    case FileError.INVALID_STATE_ERR:
-      msg = 'INVALID_STATE_ERR';
-      break;
-    default:
-      msg = 'Unknown Error';
-      break;
-  };
-
-  console.log('Error: ' + msg);
-}
-
 $(function(){
+  /*
+  function SaveDatFileBro(localstorage) {
+    localstorage.root.getFile("info.txt", {create: true});
+  }
+
+  var fs = window.webkitRequestFileSystem(window.TEMPORARY, 10*1024*1024, SaveDatFileBro); 
+  navigator.webkitPersistentStorage.requestQuota(10*1024*1024, function() {
+    window.webkitRequestFileSystem(window.PERSISTENT , 10*1024*1024, SaveDatFileBro);
+  });
+  */
+
+  if (window.File && window.FileReader && window.FileList && window.Blob) {
+    // Great success! All the File APIs are supported.
+  } else {
+    alert('The File APIs are not fully supported in this browser.');
+  }
+
   // Note: The file system has been prefixed as of Google Chrome 12:
   /*
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;

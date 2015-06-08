@@ -4,9 +4,11 @@
 
 //0 buy Leap Motion
 
-//1 install Chrome
+//1 install Chrome Developer Edition
 //2 install Chrome Extension: Allow-Control-Allow-Origin: *
 //3 install Chrome Extension: Custom JavaScript for websites
+
+//you will also need a flag --allow-file-access-from-files for File Storage API
 
 //4 define the target <video> element
 var search_for = '.video-stream';
